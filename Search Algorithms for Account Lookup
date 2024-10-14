@@ -1,0 +1,11 @@
+int binarySearch(vector<Account> &accounts, int accountNumber, int low, int high) {
+    if (high >= low) {
+        int mid = low + (high - low) / 2;
+        if (accounts[mid].accountNumber == accountNumber)
+            return mid;
+        if (accounts[mid].accountNumber > accountNumber)
+            return binarySearch(accounts, accountNumber, low, mid - 1);
+        return binarySearch(accounts, accountNumber, mid + 1, high);
+    }
+    return -1;
+}
