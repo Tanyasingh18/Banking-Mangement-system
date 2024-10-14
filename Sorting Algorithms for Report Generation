@@ -1,0 +1,21 @@
+// Quick sort for sorting accounts by balance
+void quickSort(vector<Account> &accounts, int low, int high) {
+    if (low < high) {
+        int pi = partition(accounts, low, high);
+        quickSort(accounts, low, pi - 1);
+        quickSort(accounts, pi + 1, high);
+    }
+}
+
+int partition(vector<Account> &accounts, int low, int high) {
+    double pivot = accounts[high].balance;
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (accounts[j].balance < pivot) {
+            i++;
+            swap(accounts[i], accounts[j]);
+        }
+    }
+    swap(accounts[i + 1], accounts[high]);
+    return i + 1;
+}
