@@ -1,0 +1,19 @@
+#include <map>
+#include <list>
+
+// Using an adjacency list to represent a graph for branch-to-branch connectivity
+map<string, list<string>> branchGraph;
+
+// Function to add a branch and its connection
+void addBranchConnection(string branch1, string branch2) {
+    branchGraph[branch1].push_back(branch2);
+    branchGraph[branch2].push_back(branch1);  // Since it’s bidirectional
+}
+
+void displayConnections(string branch) {
+    cout << "Branches connected to " << branch << ": ";
+    for (const auto &connectedBranch : branchGraph[branch]) {
+        cout << connectedBranch << " ";
+    }
+    cout << endl;
+}
