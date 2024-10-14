@@ -1,0 +1,12 @@
+// Error handling in transaction functions
+void withdraw(int accountNumber, double amount) {
+    if (amount < 0) {
+        cout << "Invalid amount!" << endl;
+        return;
+    }
+    if (accountMap.find(accountNumber) == accountMap.end()) {
+        cout << "Account not found!" << endl;
+        return;
+    }
+    // Withdrawal logic
+}
