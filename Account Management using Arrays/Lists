@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Account {
+    int accountNumber;
+    string name;
+    double balance;
+};
+
+vector<Account> accounts;
+
+// Function to create a new account
+void createAccount(int accountNumber, string name, double initialDeposit) {
+    accounts.push_back({accountNumber, name, initialDeposit});
+    cout << "Account created successfully!" << endl;
+}
+
+// Function to update an existing account
+void updateAccount(int accountNumber, string newName) {
+    for (auto &account : accounts) {
+        if (account.accountNumber == accountNumber) {
+            account.name = newName;
+            cout << "Account updated successfully!" << endl;
+            return;
+        }
+    }
+    cout << "Account not found!" << endl;
+}
+
+// Function to delete an account
+void deleteAccount(int accountNumber) {
+    for (int i = 0; i < accounts.size(); i++) {
+        if (accounts[i].accountNumber == accountNumber) {
+            accounts.erase(accounts.begin() + i);
+            cout << "Account deleted successfully!" << endl;
+            return;
+        }
+    }
+    cout << "Account not found!" << endl;
+}
