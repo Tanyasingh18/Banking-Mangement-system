@@ -1,0 +1,34 @@
+#include <queue>
+#include <stack>
+
+queue<string> transactionQueue;  // For processing transactions
+stack<string> transactionHistory;  // For storing transaction history
+
+void deposit(int accountNumber, double amount) {
+    transactionQueue.push("Deposit: " + to_string(amount) + " to Account: " + to_string(accountNumber));
+    // Process the transaction immediately (or later)
+    for (auto &account : accounts) {
+        if (account.accountNumber == accountNumber) {
+            account.balance += amount;
+            transactionHistory.push("Deposited " + to_string(amount) + " to Account: " + to_string(accountNumber));
+            cout << "Deposit successful!" << endl;
+            return;
+        }
+    }
+}
+
+void withdraw(int accountNumber, double amount) {
+    transactionQueue.push("Withdraw: " + to_string(amount) + " from Account: " + to_string(accountNumber));
+    for (auto &account : accounts) {
+        if (account.accountNumber == accountNumber) {
+            if (account.balance >= amount) {
+                account.balance -= amount;
+                transactionHistory.push("Withdrew " + to_string(amount) + " from Account: " + to_string(accountNumber));
+                cout << "Withdrawal successful!" << endl;
+            } else {
+                cout << "Insufficient funds!" << endl;
+            }
+            return;
+        }
+    }
+}
